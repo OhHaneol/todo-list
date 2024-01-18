@@ -1,5 +1,6 @@
 package todolist.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -7,8 +8,8 @@ import javax.persistence.*;
 
 @Getter
 @Entity
-@NoArgsConstructor
-public class TodoEntity {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class TodoEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
