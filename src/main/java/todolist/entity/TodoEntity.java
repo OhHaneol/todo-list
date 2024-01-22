@@ -18,13 +18,13 @@ public class TodoEntity extends BaseEntity {
     @Column(nullable = false)
     private String title;
 
-//    public TodoEntity(String title) {
-//        this.title = title;
-//    }
-//
-//    public TodoEntity update(String title) {
-//        this.title = title;
-//        return this;
-//    }
+    public TodoEntity(String title) {
+        this.title = title;
+    }
+
+    public TodoEntity update(String title) {
+        this.title = title;
+        return this;
+    }
 
 }
