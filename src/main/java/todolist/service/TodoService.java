@@ -39,7 +39,7 @@ public class TodoService {
         todoRepository.deleteById(id);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public TodoResponse get(Long id) {
         // id 값으로 조회가 되지 않으면 에러를 내보낸다.
         TodoEntity todoEntity = todoRepository.findById(id)
@@ -48,7 +48,7 @@ public class TodoService {
         return new TodoResponse(todoEntity);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<TodoResponse> getAll(Pageable pageable) {
         // pageable로 todo를 조회
         Page<TodoEntity> todoEntities = todoRepository.findAll(pageable);
