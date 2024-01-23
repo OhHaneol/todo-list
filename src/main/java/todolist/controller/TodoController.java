@@ -12,7 +12,7 @@ import todolist.dto.TodoResponse;
 import todolist.service.TodoService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/todo")
 @RequiredArgsConstructor
 public class TodoController {
     private final TodoService todoService;
@@ -20,6 +20,7 @@ public class TodoController {
     // 생성
     @PostMapping
     public ResponseEntity<?> create(@RequestBody TodoRequest request) {
+        System.out.println("CREATE");
         TodoResponse response = todoService.create(request);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -31,6 +32,7 @@ public class TodoController {
             @PathVariable Long id,
             @RequestBody TodoRequest request
     ) {
+        System.out.println("UPDATE");
         TodoResponse response = todoService.update(id, request);
 
         return ResponseEntity.ok(response);
@@ -39,6 +41,7 @@ public class TodoController {
     // 삭제
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
+        System.out.println("DELETE");
         todoService.delete(id);
 
         return ResponseEntity
@@ -46,10 +49,10 @@ public class TodoController {
                 .build();
     }
 
-
     // 조회
     @GetMapping("/{id}")
     public ResponseEntity<?> get(@PathVariable Long id) {
+        System.out.println("READ ONE");
         TodoResponse response = todoService.get(id);
 
         return ResponseEntity.ok(response);
@@ -58,6 +61,7 @@ public class TodoController {
     // 전체 조회
     @GetMapping
     public ResponseEntity<?> getAll(@PageableDefault(size = 10) Pageable pageable) {
+        System.out.println("READ ALL");
         Page<TodoResponse> responses = todoService.getAll(pageable);
 
         return ResponseEntity.ok(responses);
